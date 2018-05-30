@@ -1,4 +1,4 @@
-
+ArrayList<Fruit> fruits;
 float fadeOutTime = 1000;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
@@ -7,10 +7,17 @@ void setup() {
   noStroke();
   img=loadImage("background.jpg");
   frameRate(100);
+  fruits = new ArrayList<Fruit>();
+  for (int i = 0; i < 10; i++) {
+    fruits.add(new Fruit());
+  }
 }
  
 void draw() {
   background(img);
+  for (Fruit f : fruits) {
+    image(f.(img), 0, 0);
+  }
   for (int i=points.size()-1; i>=0; i--) {
     PVector p = points.get(i);
     float timeAlive = millis() - p.z;
