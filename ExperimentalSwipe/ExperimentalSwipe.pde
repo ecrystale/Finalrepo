@@ -1,63 +1,38 @@
-int Yellow;
-int Red;
-int Green;
-int Blue;
-int Grey;
-int LightGrey;
-color currentColor;
-boolean typeIsRect;
+float x=0,y=0,h=0;
 PImage img;
-import fisica.*;
-FWorld world;
-
+PImage fruit;
 void setup()
 {
- size(1377,840);
- background(102);
- frameRate(60);
- Fisica.init(this);
- world=new FWorld();
- currentColor = color(102);
-
-
-img = loadImage("background.jpg");
-background(img);
-
+  img=loadImage("background.jpg");
+  background(img);
+  size(640,480);
 }
 
-//interface
 void draw()
-{
- stroke(5);
- smooth();
+{ 
+  background(img);
+  rect(250,height/2+h,40,40); 
+ x=x+y;
  
-/**ellipse(100, 100, 100,50);
- fill(225);
- FCircle c = new FCircle(30);
- world.setGravity(0, -1);
- c.setPosition(200, 100);
- world.add(c);
- c.setSize(40);*/
-
- // Now if the mouse is pressed, paint
- if (mousePressed)
+ if(y<30) y++;
+ 
+ h = x/4;
+ x++;
+ 
+ if (y > 40)
  {
-   noStroke();
-   fill(0);
-   if (typeIsRect)
-   {
-     if ((mouseX>140) && (mouseY>20) && (mouseX<190) && (mouseY<70))
-     {
-       rect(mouseX-25,mouseY-25,50,50);
-     }
-     else
-     {
-       rect(mouseX-10,mouseY-10,20,20);
-     }
-   }
-   else
-   {
-     ellipse(mouseX,mouseY,20,20);
-   }
+   y = 40;
+   
  }
+  
+   if (y < -30)
+ {
+   y= -30;
+   
+ }
+}
+
+void mousePressed() {
+
+  y-=80;
 }
