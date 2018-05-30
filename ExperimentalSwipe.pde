@@ -7,24 +7,21 @@ int LightGrey;
 color currentColor;
 boolean typeIsRect;
 PImage img;
+import fisica.*;
+FWorld world;
 
 void setup()
 {
  size(1377,840);
  background(102);
  frameRate(60);
-
+ Fisica.init(this);
+ world=new FWorld();
  currentColor = color(102);
-
-
 
 
 img = loadImage("Background.jpg");
 background(img);
-
-
-
- 
 
 }
 
@@ -34,6 +31,13 @@ void draw()
  stroke(5);
  smooth();
  
+/**ellipse(100, 100, 100,50);
+ fill(225);
+ FCircle c = new FCircle(30);
+ world.setGravity(0, -1);
+ c.setPosition(200, 100);
+ world.add(c);
+ c.setSize(40);*/
 
  // Now if the mouse is pressed, paint
  if (mousePressed)
