@@ -20,7 +20,7 @@ void setup()
  currentColor = color(102);
 
 
-img = loadImage("Background.jpg");
+img = loadImage("background.jpg");
 background(img);
 
 }
@@ -61,5 +61,3 @@ void draw()
    }
  }
 }
-
-
