@@ -1,4 +1,4 @@
-
+ArrayList<Mover> movers;
 float fadeOutTime = 1000;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
@@ -7,6 +7,10 @@ void setup() {
   noStroke();
   img=loadImage("background.jpg");
   frameRate(100);
+  movers = new ArrayList<Mover>();
+  for (int i = 0; i < 10; i++) {
+    movers.add(new Mover(1));
+  }
 }
  
 void draw() {
@@ -21,6 +25,10 @@ void draw() {
       fill(255, transparency);
       ellipse(p.x, p.y, 7, 7);
     }
+  }
+    for (Mover m : movers) {
+    m.display();
+    m.update(movers);
   }
 }
  
