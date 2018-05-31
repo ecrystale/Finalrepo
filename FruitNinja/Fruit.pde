@@ -6,14 +6,17 @@ public class Fruit{
                     "Freeze_Banana.png", "Frenzy_Banana.png", "Green_Apple.png",
                     "Kiwi_Fruit.png", "Lemon.png", "Lime.png",
                     "Mango.png", "Orange.png", "Passionfruit.png",
-                    "Pear.png", "Pinapple.png", "Plum.png",
+                    "Pear.png", "Pineapple.png", "Plum.png",
                     "Pomegranate.png", "Red_Apple.png", "Score_2x_Banana.png",
                     "Strawberry.png", "Watermelon.png"};
   public Fruit(){
     int place=(int)random(65);
     String ok=fruits[place%21];
     img=loadImage(ok);
-    x=random(width); 
-    y=0;
+    x = random(width);
+    y = random(height);
+ }
+ public void display(){
+      image(img,x,y,50,60); 
  }
 }

@@ -15,8 +15,9 @@ void setup() {
  
 void draw() {
   background(img);
-  for (Fruit f : fruits) {
-    image(f.(img), 0, 0);
+ for (Fruit f : fruits) {
+    f.display();
+    //image(f.(img), 0, 0);
   }
   for (int i=points.size()-1; i>=0; i--) {
     PVector p = points.get(i);
