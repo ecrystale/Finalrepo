@@ -9,7 +9,7 @@ void setup() {
   frameRate(100);
   movers = new ArrayList<Mover>();
   for (int i = 0; i < 10; i++) {
-    movers.add(new Mover(1));
+    movers.add(new Mover());
   }
 }
  

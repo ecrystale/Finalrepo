@@ -6,25 +6,56 @@ public class Mover {
 
   public Mover() {
     x = random(width);
-    y = height;
+    y = height-60;
     r = 50;
     c = color(0, 255, 0);
-    xspeed= -5;
-    yspeed= -5;
+    xspeed= random(1)+.5;
+    yspeed= -1;
   }
-
+/**
   public Mover(int a) {
-    //x = random(width-2*r)+r;
-    //y = random(height-2*r)+r;
+    x = random(width-2*r)+r;
+    y = height+60;//random(height-2*r)+r;
      r = 20+random(20);
     c = color(0, 255, 0);
-    xspeed= random(1)-.5;
+    xspeed= random(1)+.5;
     yspeed= 1;
-  }
-
-  public void update(ArrayList<Mover> others) {
-    x += xspeed; 
-    y += yspeed; 
+  }*/
+    private boolean hit=false;
+    private boolean mid=false;
+    public void update(ArrayList<Mover> others) {
+    if(mid==false){
+       if(x>(width/2)){
+         x -= xspeed;
+         if(x==width/2){
+            mid=true; 
+         }
+       }  
+       if(x<(width/2)){
+         x += xspeed;
+         if(x==width/2){
+           mid=true;
+           xspeed=-xspeed;
+         } 
+       }
+       if(x==width/2){
+            mid=true; 
+        }
+    }
+    if(mid==true){
+       x+=xspeed;
+    }
+    if(y>height/4){
+        y += yspeed;
+    }
+    if(y==height/4){
+       hit=true;
+       yspeed=1;
+    }
+    if(hit==true){
+       //yspeed=-1;
+       y+=yspeed; 
+    }
   }
   /**
   public void checkWalls() {
