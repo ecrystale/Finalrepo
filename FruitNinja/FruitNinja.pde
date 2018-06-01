@@ -8,7 +8,7 @@ void setup() {
   img=loadImage("background.jpg");
   frameRate(100);
   movers = new ArrayList<Mover>();
-  for (int i = 0; i < 10; i++) {
+  for (int i = 0; i < 1; i++) {
     movers.add(new Mover());
   }
 }

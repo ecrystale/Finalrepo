@@ -9,9 +9,16 @@ public class Mover {
     y = height-60;
     r = 50;
     c = color(0, 255, 0);
-    xspeed= random(1)+.5;
+    xspeed= random(.5)+.1;
     yspeed= -1;
-  }
+    if(x>(width/2)){
+         x = -xspeed;
+    }
+    if(x==width/2){
+         //mid=true; 
+         xspeed=0;
+     }  
+    }
 /**
   public Mover(int a) {
     x = random(width-2*r)+r;
@@ -21,40 +28,33 @@ public class Mover {
     xspeed= random(1)+.5;
     yspeed= 1;
   }*/
-    private boolean hit=false;
-    private boolean mid=false;
+    private boolean hit=false; 
+    private boolean top=false; 
+    //private boolean mid=false;
     public void update(ArrayList<Mover> others) {
-    if(mid==false){
-       if(x>(width/2)){
-         x -= xspeed;
-         if(x==width/2){
-            mid=true; 
-         }
-       }  
-       if(x<(width/2)){
-         x += xspeed;
-         if(x==width/2){
-           mid=true;
-           xspeed=-xspeed;
-         } 
-       }
-       if(x==width/2){
-            mid=true; 
-        }
-    }
-    if(mid==true){
-       x+=xspeed;
-    }
-    if(y>height/4){
+    x+=xspeed;
+    if(top==false){
+    if(y>height/8){
         y += yspeed;
     }
     if(y==height/4){
-       hit=true;
-       yspeed=1;
+       //hit=!hit; 
+       //if(hit==true){
+         yspeed=-.5;
+      //
     }
-    if(hit==true){
-       //yspeed=-1;
-       y+=yspeed; 
+    if(y==height/8){
+       top=true;
+       yspeed=.5;
+       //yspeed=-.5;
+      }
+    }
+    if(top==true){
+       //yspeed=-1
+      if(y==height/4){
+              yspeed=1; 
+      }
+      y+=yspeed; 
     }
   }
   /**
