@@ -9,10 +9,13 @@ public class Mover {
     y = height-60;
     r = 50;
     c = color(0, 255, 0);
-    xspeed= random(.5)+.1;
-    yspeed= -1;
+    xspeed= random(1)+.1;
+    xacc=-.01;
+    yspeed= -2.5;
+    yacc=.01;
     if(x>(width/2)){
          x = -xspeed;
+         xacc=-xacc;
     }
     if(x==width/2){
          //mid=true; 
@@ -31,8 +34,16 @@ public class Mover {
     private boolean hit=false; 
     private boolean top=false; 
     //private boolean mid=false;
+     public void update(ArrayList<Mover> others) {
+    //change the position etc.
+    x += xspeed; 
+    y += yspeed; 
+    yspeed += yacc;
+    xspeed += xacc;}
+    /**
     public void update(ArrayList<Mover> others) {
     x+=xspeed;
+    x+=xacc;
     if(top==false){
     if(y>height/8){
         y += yspeed;
@@ -41,21 +52,24 @@ public class Mover {
        //hit=!hit; 
        //if(hit==true){
          yspeed=-.5;
+         yacc=-yacc;
       //
     }
     if(y==height/8){
        top=true;
        yspeed=.5;
+       yacc=-yacc;
        //yspeed=-.5;
       }
     }
     if(top==true){
        //yspeed=-1
       if(y==height/4){
-              yspeed=1; 
+           yspeed=1;
       }
       y+=yspeed; 
-    }
+    }  
+    y+=yacc;
   }
   /**
   public void checkWalls() {
