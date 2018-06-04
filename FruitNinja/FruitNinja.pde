@@ -1,4 +1,4 @@
-ArrayList<Mover> movers;
+ArrayList<Fruit> fruits;
 float fadeOutTime = 1000;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
@@ -7,9 +7,9 @@ void setup() {
   noStroke();
   img=loadImage("background.jpg");
   frameRate(100);
-  movers = new ArrayList<Mover>();
-  for (int i = 0; i < 1; i++) {
-    movers.add(new Mover());
+  fruits = new ArrayList<Fruit>();
+  for (int i = 0; i < (int)random(3)+1; i++) {
+    fruits.add(new Fruit());
   }
 }
  
@@ -26,9 +26,9 @@ void draw() {
       ellipse(p.x, p.y, 7, 7);
     }
   }
-    for (Mover m : movers) {
-    m.display();
-    m.update(movers);
+    for (Fruit f : fruits) {
+    f.display();
+    f.update(fruits);
   }
 }
  
