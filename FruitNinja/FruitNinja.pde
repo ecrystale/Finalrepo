@@ -35,7 +35,7 @@ void draw() {
       ellipse(p.x, p.y, 7, 7);
     }
   }
-    for (Fruit f : fruits) {
+  for (Fruit f : fruits) {
     f.display();
     f.update(fruits);
   }
@@ -43,4 +43,11 @@ void draw() {
  
 void mouseDragged() {
   points.add(new PVector(mouseX, mouseY, millis()));
+  for (Fruit f : fruits) {
+    if(f.killed()!=true){
+      if(f.killing()){
+        f.kill();
+      }
+    }
+  }
 }
