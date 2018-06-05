@@ -1,19 +1,28 @@
-ArrayList<Fruit> fruits;
+long time=System.currentTimeMillis();
 float fadeOutTime = 1000;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
+ ArrayList<Fruit> fruits = new ArrayList<Fruit>();
 void setup() {
   size(640, 480);
   noStroke();
   img=loadImage("background.jpg");
   frameRate(100);
-  fruits = new ArrayList<Fruit>();
-  for (int i = 0; i < (int)random(3)+1; i++) {
-    fruits.add(new Fruit());
-  }
+  
+  //generate();
 }
  
+ void generate(){
+   for (int i = 0; i < (int)random(4)+1; i++) {
+    fruits.add(new Fruit());
+  }
+ }
 void draw() {
+  time=System.currentTimeMillis()/10;
+  if(time%200==0.0){
+    generate();
+  }
+
   background(img);
   for (int i=points.size()-1; i>=0; i--) {
     PVector p = points.get(i);
