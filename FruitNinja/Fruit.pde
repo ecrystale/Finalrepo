@@ -2,6 +2,8 @@ public class Fruit{
   float x, xspeed, xacc;
   float y, yspeed, yacc;;
   PImage img;
+  boolean frozenBanana;
+  long time=System.currentTimeMillis();
   String[] fruits= {"Banana.png", "Coconut.png", "Dragonfruit.png",
                     "Freeze_Banana.png", "Frenzy_Banana.png","Green_Apple.png",
                     "Kiwi_Fruit.png", "Lemon.png","Lime.png", 
@@ -14,7 +16,6 @@ public class Fruit{
   String imaged="";
   public Fruit(){
     int place=(int)random(22);
-
     imaged=fruits[place];
     img=loadImage(imaged);
     x = random(width);

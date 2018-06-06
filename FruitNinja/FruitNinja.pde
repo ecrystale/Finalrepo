@@ -2,13 +2,14 @@ long time=System.currentTimeMillis();
 float fadeOutTime = 1000;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
+ int score;
  ArrayList<Fruit> fruits = new ArrayList<Fruit>();
 void setup() {
   size(640, 480);
   noStroke();
   img=loadImage("background.jpg");
   frameRate(100);
-  
+  score=0;
   //generate();
 }
  
@@ -18,12 +19,16 @@ void setup() {
   }
  }
 void draw() {
+
   time=System.currentTimeMillis()/10;
   if(time%200==0.0){
     generate();
   }
 
   background(img);
+    textSize(40);
+  fill(#FFFFFF);
+  text(""+score, 20, 50);
   for (int i=points.size()-1; i>=0; i--) {
     PVector p = points.get(i);
     float timeAlive = millis() - p.z;
@@ -47,6 +52,7 @@ void mouseDragged() {
     if(f.killed()!=true){
       if(f.killing()){
         f.kill();
+        score++;
       }
     }
   }
