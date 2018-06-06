@@ -35,16 +35,17 @@ public class Fruit{
  
      private boolean hit=false; 
     private boolean top=false; 
+    boolean move=true;
     //private boolean mid=false;
      public void update(ArrayList<Fruit> others) {
-       if(killed()){
-         
-       }
+       if(move==true){
     //change the position etc.
     x += xspeed; 
     y += yspeed; 
     yspeed += yacc;
-    xspeed += xacc;}
+    xspeed += xacc;
+       }
+     }
     boolean killedx=false;;
     public boolean killed(){
       return killedx;
@@ -66,14 +67,15 @@ public class Fruit{
       return false;
     }
     public void kill(){
-      if(!(imaged.equals("-10_Bomb.png") || imaged.equals("Bomb.png"))){
+      if(!(imaged.equals("-10_Bomb.png") || imaged.equals("Bomb.png"))){/**
       if(imaged.equals("Freeze_Banana.png") || imaged.equals("Frenzy_Banana.png")
          || imaged.equals("Score_2x_Banana.png")){
         imaged="Banana.png";
       }
-      imaged=imaged.substring(0,imaged.length()-4)+"Slice.png";
-      img=loadImage(imaged);
+      imaged=imaged.substring(0,imaged.length()-4)+"Slice.png";*/
+      img=loadImage("stain.png");
       image(img,x,y,50,60);
+      move=false;
     }
     }
  public void display(){
