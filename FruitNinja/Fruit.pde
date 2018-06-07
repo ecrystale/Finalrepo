@@ -10,12 +10,11 @@ public class Fruit{
                     "Mango.png", "Orange.png", "Passionfruit.png", 
                     "Pear.png", "Pineapple.png","Plum.png",
                     "Pomegranate.png", "Red_Apple.png","Score_2x_Banana.png", 
-                    "Strawberry.png", "Watermelon.png","-10_Bomb.png", 
-                    "Bomb.png"};
+                    "Strawberry.png", "Watermelon.png", "Bomb.png"};
                     
   String imaged="";
   public Fruit(){
-    int place=(int)random(22);
+    int place=(int)random(21);
     imaged=fruits[place];
     img=loadImage(imaged);
     x = random(width);
@@ -67,8 +66,19 @@ public class Fruit{
       }
       return false;
     }
+    boolean gameend=false;
+    public boolean ended(){
+     return gameend; 
+    }
     public void kill(){
-      if(!(imaged.equals("-10_Bomb.png") || imaged.equals("Bomb.png"))){/**
+      if(imaged.equals("Bomb.png")){
+        //img=loadImage("End.png");
+        clear();
+        //image(img);//,width,height,width,height);
+        gameend=true;
+        //move=false;
+      }
+      if(!imaged.equals("Bomb.png")){/**
       if(imaged.equals("Freeze_Banana.png") || imaged.equals("Frenzy_Banana.png")
          || imaged.equals("Score_2x_Banana.png")){
         imaged="Banana.png";

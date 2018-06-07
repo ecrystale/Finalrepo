@@ -18,8 +18,9 @@ void setup() {
     fruits.add(new Fruit());
   }
  }
+ boolean end=false;
 void draw() {
-
+  if(end==false){
   time=System.currentTimeMillis()/10;
   if(time%200==0.0){
     generate();
@@ -43,6 +44,14 @@ void draw() {
   for (Fruit f : fruits) {
     f.display();
     f.update(fruits);
+         if(f.ended()==true){
+           end=true;
+           clear();
+          img=loadImage("End.png");
+          image(img,0,0,width,height);        
+          text("Score: "+score, width/2, height*3/4);
+        }
+  }
   }
 }
  
