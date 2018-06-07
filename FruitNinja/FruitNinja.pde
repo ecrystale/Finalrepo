@@ -1,4 +1,5 @@
 long time=System.currentTimeMillis();
+long displayTime;
 float fadeOutTime = 1000;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
@@ -30,6 +31,11 @@ void draw() {
     textSize(40);
   fill(#FFFFFF);
   text(""+score, 20, 50);
+  textSize(40);
+  fill(#FFFFFF);
+  displayTime=60-(((int)millis()/1000)-2);
+  text(""+displayTime, 560, 50);
+  
   for (int i=points.size()-1; i>=0; i--) {
     PVector p = points.get(i);
     float timeAlive = millis() - p.z;
@@ -52,7 +58,16 @@ void draw() {
           text("Score: "+score, width/2, height*3/4);
         }
   }
+  if (displayTime<1){
+  end=true;
+    clear();
+          img=loadImage("End.png");
+          image(img,0,0,width,height);   
+          textSize(40);
+  fill(#FFFFFF);
+          text("Score: "+score, width/2, height*3/4);
   }
+}
 }
  
 void mouseDragged() {
