@@ -1,6 +1,7 @@
 long time=System.currentTimeMillis();
 long displayTime;
 float fadeOutTime = 1000;
+int initTime=60;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
  int score;
@@ -20,6 +21,8 @@ void setup() {
   }
  }
  boolean end=false;
+ boolean freeze=false;
+ int timing;
 void draw() {
   if(end==false){
   time=System.currentTimeMillis()/10;
@@ -33,7 +36,9 @@ void draw() {
   text(""+score, 20, 50);
   textSize(40);
   fill(#FFFFFF);
-  displayTime=60-(((int)millis()/1000)-2);
+  if(freeze==false){
+  displayTime=initTime-(((int)millis()/1000)-2);
+   }
   text(""+displayTime, 560, 50);
   
   for (int i=points.size()-1; i>=0; i--) {
@@ -57,6 +62,20 @@ void draw() {
           image(img,0,0,width,height);        
           text("Score: "+score, width/2, height*3/4);
         }
+        /**if(f.isfrozen() && freeze==false){
+          freeze=true;
+          timing= millis();
+        }*/
+        if(freeze==true){
+          if(f.isfrozen()==false){
+            f.setfreeze(true);
+          }
+          if(millis()-timing>=5000){
+            initTime+=5;
+            freeze=false;
+            f.setfreeze(false);
+          }
+        }
   }
   if (displayTime<1){
   end=true;
@@ -76,7 +95,13 @@ void mouseDragged() {
     if(f.killed()!=true){
       if(f.killing()){
         f.kill();
+        if(f.ended()==false){
         score++;
+        }
+        if(f.isfrozen()){
+         freeze=true; 
+         timing= millis();
+        }
       }
     }
   }

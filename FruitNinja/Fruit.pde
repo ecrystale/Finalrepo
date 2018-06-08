@@ -70,6 +70,9 @@ public class Fruit{
     public boolean ended(){
      return gameend; 
     }
+    public boolean isfrozen(){
+      return frozenBanana;
+    }
     public void kill(){
       if(imaged.equals("Bomb.png")){
         //img=loadImage("End.png");
@@ -78,17 +81,48 @@ public class Fruit{
         gameend=true;
         //move=false;
       }
-      if(!imaged.equals("Bomb.png")){/**
-      if(imaged.equals("Freeze_Banana.png") || imaged.equals("Frenzy_Banana.png")
-         || imaged.equals("Score_2x_Banana.png")){
-        imaged="Banana.png";
+      else{
+      if(imaged.equals("Freeze_Banana.png")){
+        frozenBanana=true;
       }
-      imaged=imaged.substring(0,imaged.length()-4)+"Slice.png";*/
       img=loadImage("stain.png");
       image(img,x,y,50,60);
       move=false;
     }
-    }
+  }
+  float origxs,origxa;
+  float origys,origya; 
+  public void setfreeze(boolean ok){
+     frozenBanana=ok;
+     if(frozenBanana){
+       xspeed= xspeed/4;
+       xacc=xacc/4;
+      yspeed= yspeed/2;
+       yacc=yacc/3;
+       if(x>(width/2)){
+           x = -xspeed;
+           xacc=-xacc;
+      }
+      if(x==width/2){
+           //mid=true; 
+           xspeed=0;
+       } 
+     }else
+       {
+       xspeed= random(1)+.1;
+      xacc=-.01;
+      yspeed= -2.5;
+      yacc=.01;
+      if(x>(width/2)){
+           x = -xspeed;
+           xacc=-xacc;
+      }
+      if(x==width/2){
+           //mid=true; 
+           xspeed=0;
+       } 
+     }
+  }
  public void display(){
       image(img,x,y,50,60); 
  }
