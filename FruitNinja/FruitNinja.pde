@@ -20,9 +20,11 @@ void setup() {
     fruits.add(new Fruit());
   }
  }
- boolean end=false;
- boolean freeze=false;
- int timing;
+ 
+ boolean end;
+ boolean freeze,doubled;
+ int timing,timingd;
+ 
 void draw() {
   if(end==false){
   time=System.currentTimeMillis()/10;
@@ -62,10 +64,6 @@ void draw() {
           image(img,0,0,width,height);        
           text("Score: "+score, width/2, height*3/4);
         }
-        /**if(f.isfrozen() && freeze==false){
-          freeze=true;
-          timing= millis();
-        }*/
         if(freeze==true){
           if(f.isfrozen()==false){
             f.setfreeze(true);
@@ -78,25 +76,39 @@ void draw() {
         }
   }
   if (displayTime<1){
-  end=true;
-    clear();
+        end=true;
+        clear();
           img=loadImage("End.png");
           image(img,0,0,width,height);   
           textSize(40);
-  fill(#FFFFFF);
+          fill(#FFFFFF);
           text("Score: "+score, width/2, height*3/4);
+    }
   }
-}
-}
+ }
  
 void mouseDragged() {
   points.add(new PVector(mouseX, mouseY, millis()));
   for (Fruit f : fruits) {
     if(f.killed()!=true){
       if(f.killing()){
-        f.kill();
-        if(f.ended()==false){
-        score++;
+        f.kill();             
+        if(f.isdouble() && doubled==false){
+         doubled=true; 
+         timingd= millis();
+        }
+        if(f.ended()==false){         
+            if(f.isdouble()==false){
+               f.setdouble(true);
+            }
+            score++;
+            if(doubled==true){
+              score++;
+              if(millis()-timingd>=10000){
+                  doubled=false;
+                  f.setdouble(false);
+             }
+          }
         }
         if(f.isfrozen() && freeze==false){
          freeze=true; 

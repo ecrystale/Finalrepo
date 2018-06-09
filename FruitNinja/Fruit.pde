@@ -2,7 +2,6 @@ public class Fruit{
   float x, xspeed, xacc;
   float y, yspeed, yacc;;
   PImage img;
-  boolean frozenBanana;
   long time=System.currentTimeMillis();
   String[] fruits= {"Banana.png", "Coconut.png", "Dragonfruit.png",
                     "Freeze_Banana.png", "Frenzy_Banana.png","Green_Apple.png",
@@ -46,6 +45,8 @@ public class Fruit{
     xspeed += xacc;
        }
      }
+     
+     ///Bomb
     boolean killedx=false;;
     public boolean killed(){
       return killedx;
@@ -70,9 +71,8 @@ public class Fruit{
     public boolean ended(){
      return gameend; 
     }
-    public boolean isfrozen(){
-      return frozenBanana;
-    }
+    
+    //Hit
     public void kill(){
       if(imaged.equals("Bomb.png")){
         //img=loadImage("End.png");
@@ -85,11 +85,23 @@ public class Fruit{
       if(imaged.equals("Freeze_Banana.png")){
         frozenBanana=true;
       }
+      if(imaged.equals("Score_2x_Banana.png")){
+        doubleBanana=true;
+      }
       img=loadImage("stain.png");
       image(img,x,y,50,60);
       move=false;
     }
-  }
+    }
+  
+    
+    
+    
+    //Freeze
+    boolean frozenBanana;
+    public boolean isfrozen(){
+      return frozenBanana;
+    }
   float origxs,origxa;
   float origys,origya; 
   public void setfreeze(boolean ok){
@@ -123,6 +135,17 @@ public class Fruit{
        } 
      }
   }
+  
+  
+  //Double
+  boolean doubleBanana;
+  public boolean isdouble(){
+      return doubleBanana;
+  }
+  public void setdouble(boolean ok){
+     doubleBanana=ok; 
+  }
+  
  public void display(){
       image(img,x,y,50,60); 
  }
