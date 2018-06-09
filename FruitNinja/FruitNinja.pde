@@ -98,7 +98,7 @@ void mouseDragged() {
         if(f.ended()==false){
         score++;
         }
-        if(f.isfrozen()){
+        if(f.isfrozen() && freeze==false){
          freeze=true; 
          timing= millis();
         }
