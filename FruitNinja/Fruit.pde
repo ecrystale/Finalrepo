@@ -32,8 +32,7 @@ public class Fruit{
      }  
     }
  
-     private boolean hit=false; 
-    private boolean top=false; 
+
     boolean move=true;
     //private boolean mid=false;
      public void update(ArrayList<Fruit> others) {
@@ -88,11 +87,14 @@ public class Fruit{
       if(imaged.equals("Score_2x_Banana.png")){
         doubleBanana=true;
       }
+      if(imaged.equals("Frenzy_Banana.png")){
+        frenzyBanana=true;
+      }
       img=loadImage("stain.png");
       image(img,x,y,50,60);
       move=false;
     }
-    }
+   }
   
     
     
@@ -144,6 +146,15 @@ public class Fruit{
   }
   public void setdouble(boolean ok){
      doubleBanana=ok; 
+  }
+  
+  //Frenzy
+  boolean frenzyBanana;
+  public boolean isfrenzy(){
+      return frenzyBanana;
+  }
+  public void setfrenzy(boolean ok){
+     frenzyBanana=ok; 
   }
   
  public void display(){

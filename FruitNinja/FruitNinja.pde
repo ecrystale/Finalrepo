@@ -21,15 +21,27 @@ void setup() {
   }
  }
  
+ void Fgenerate(){
+    for (int i = 0; i < (int)random(20)+5; i++) {
+    fruits.add(new Fruit());
+  }
+ }
+ 
  boolean end;
- boolean freeze,doubled;
- int timing,timingd;
+ boolean freeze,doubled,frenzy;
+ int timing,timingd,timingf;
  
 void draw() {
   if(end==false){
   time=System.currentTimeMillis()/10;
   if(time%200==0.0){
-    generate();
+    if(frenzy==true){
+      Fgenerate();
+      frenzy=false; 
+    }
+    else{
+      generate(); 
+    }
   }
 
   background(img);
@@ -87,6 +99,8 @@ void draw() {
   }
  }
  
+ 
+ 
 void mouseDragged() {
   points.add(new PVector(mouseX, mouseY, millis()));
   for (Fruit f : fruits) {
@@ -113,6 +127,10 @@ void mouseDragged() {
         if(f.isfrozen() && freeze==false){
          freeze=true; 
          timing= millis();
+        }       
+        if(f.isfrenzy()){ //&& frenzy==false){
+           frenzy=true; 
+           f.setfrenzy(false);
         }
       }
     }
