@@ -20,7 +20,7 @@ public class Fruit{
     y = height-60;
     xspeed= random(1)+.1;
     xacc=-.01;
-    yspeed= -2.5;
+    yspeed= -(random(.5)+2);
     yacc=.01;
     if(x>(width/2)){
          x = -xspeed;

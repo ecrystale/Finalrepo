@@ -1,5 +1,5 @@
-long time=System.currentTimeMillis();
-long displayTime;
+int time;//=System.currentTimeMillis();
+long displayTime,timed;
 float fadeOutTime = 1000;
 int initTime=60;
 ArrayList <PVector> points = new ArrayList <PVector> ();
@@ -49,16 +49,16 @@ void Fgenerate(){
    
 boolean end;
 boolean freeze,doubled,frenzy;
-int timing,timingd,timingf;
-   
+int timing,timingd,timingf,addedtime;
+
 void draw() {
     if(started==true){
     if(end==false){
-    time=System.currentTimeMillis()/10;
-    if(time%200==0.0){
-      if(frenzy==true){
-        Fgenerate();
-        timingf--;
+      timed=System.currentTimeMillis()/10;
+       if(timed%200==0.0){
+        if(frenzy==true){
+          Fgenerate();
+          timingf--;
         if(timingf==0){
           frenzy=false; 
         }
@@ -76,10 +76,10 @@ void draw() {
     textSize(40);
     fill(#FFFFFF);
     if(freeze==false){
-    displayTime=initTime-(((int)millis()/1000)-2);
+    displayTime=((61000+addedtime-millis())/1000);
      }
     text(""+displayTime, 560, 50);
-    
+
     for (int i=points.size()-1; i>=0; i--) {
       PVector p = points.get(i);
       float timeAlive = millis() - p.z;
@@ -106,7 +106,7 @@ void draw() {
               f.setfreeze(true);
             }
             if(millis()-timing>=5000){
-              initTime+=5;
+              addedtime+=5000;
               freeze=false;
               //f.setfreeze(false);
             }
@@ -152,7 +152,7 @@ void mouseDragged() {
         }
         if(f.isfrozen() && freeze==false){
          freeze=true; 
-         f.setfreeze(false);
+         //f.setfreeze(false);
          timing= millis();
         }       
         if(f.isfrenzy()){ //&& frenzy==false){
@@ -170,5 +170,9 @@ void mouseDragged() {
     if((mouseX<=(width/2)-60+100 && mouseX>=(width/2)-60) && (height/2>=mouseY-50 && height/2<=mouseY+50)){
      startup();
      started=true;
+     time=millis();
+     addedtime=time;
+     time=61000;
+     //time=60;
     }
   }
