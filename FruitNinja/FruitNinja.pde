@@ -126,6 +126,7 @@ void mouseDragged() {
         }
         if(f.isfrozen() && freeze==false){
          freeze=true; 
+         f.setfreeze(false);
          timing= millis();
         }       
         if(f.isfrenzy()){ //&& frenzy==false){
