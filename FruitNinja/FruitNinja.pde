@@ -2,15 +2,22 @@ int time;//=System.currentTimeMillis();
 long displayTime,timed;
 float fadeOutTime = 1000;
 int initTime=60;
+boolean combo;
+int combocount;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
+ PImage logo;
  int score;
  ArrayList<Fruit> fruits = new ArrayList<Fruit>();
  
  PFont font;
 void setup() {
   //generate();
-  background(255);
+  img=loadImage("background.jpg");
+  //logo = loadImage("FruitNinja.png"); 
+  //image(logo,30,50);
+  
+  background(img);
   size(640, 480);   
   font = createFont("Arial",116,true);
   textFont(font,50);
@@ -125,14 +132,28 @@ void draw() {
    }
 }
    
- 
+
  
 void mouseDragged() {
   points.add(new PVector(mouseX, mouseY, millis()));
   for (Fruit f : fruits) {
     if(f.killed()!=true){
       if(f.killing()){
-        f.kill();             
+        if(!combo){
+          if(f.killed()){
+            for(int i=1;i<fruits.size(); i++){
+              if(fruits.get(i).killed()){
+            combocount++;
+            System.out.println(combocount);
+            combo=true;
+          }
+            }
+          }
+          combo=false;
+        combocount=0;
+        }
+        f.kill();  
+        
         if(f.isdouble() && doubled==false){
          doubled=true; 
          timingd= millis();
@@ -167,6 +188,7 @@ void mouseDragged() {
   
   
   void mouseClicked(){
+    
     if((mouseX<=(width/2)-60+100 && mouseX>=(width/2)-60) && (height/2>=mouseY-50 && height/2<=mouseY+50)){
      startup();
      started=true;
