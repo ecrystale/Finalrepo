@@ -17,7 +17,8 @@ void setup() {
   fill(0);  
   text("Start",(width/2)-60, height/2);
   //if(){
-   //startup(); 
+  // startup(); 
+  // started=true;
   //}
 }
 
@@ -38,8 +39,11 @@ void generate(){
    }
    
 void Fgenerate(){
-      for (int i = 0; i < (int)random(25)+7; i++) {
-      fruits.add(new Fruit());
+    for (int i = 0; i < (int)random(25)+7; i++) {
+      Fruit f=new Fruit();
+      if(f.thefruit()!="Bomb.png"){
+        fruits.add(f);
+      }
     }
    }
    
@@ -104,7 +108,7 @@ void draw() {
             if(millis()-timing>=5000){
               initTime+=5;
               freeze=false;
-              f.setfreeze(false);
+              //f.setfreeze(false);
             }
           }
     }
@@ -163,4 +167,8 @@ void mouseDragged() {
   
   
   void mouseClicked(){
+    if((mouseX<=(width/2)-60+100 && mouseX>=(width/2)-60) && (height/2>=mouseY-50 && height/2<=mouseY+50)){
+     startup();
+     started=true;
+    }
   }

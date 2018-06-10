@@ -31,7 +31,9 @@ public class Fruit{
          xspeed=0;
      }  
     }
- 
+ public String thefruit(){
+  return imaged; 
+ }
 
     boolean move=true;
     //private boolean mid=false;
