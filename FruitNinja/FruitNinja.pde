@@ -22,7 +22,7 @@ void setup() {
  }
  
  void Fgenerate(){
-    for (int i = 0; i < (int)random(20)+5; i++) {
+    for (int i = 0; i < (int)random(25)+7; i++) {
     fruits.add(new Fruit());
   }
  }
@@ -37,7 +37,10 @@ void draw() {
   if(time%200==0.0){
     if(frenzy==true){
       Fgenerate();
-      frenzy=false; 
+      timingf--;
+      if(timingf==0){
+        frenzy=false; 
+      }
     }
     else{
       generate(); 
@@ -131,7 +134,8 @@ void mouseDragged() {
         }       
         if(f.isfrenzy()){ //&& frenzy==false){
            frenzy=true; 
-           f.setfrenzy(false);
+           f.setfrenzy(false);           
+           timingf=2;
         }
       }
     }
