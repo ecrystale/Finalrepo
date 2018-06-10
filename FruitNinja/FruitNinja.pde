@@ -6,102 +6,121 @@ ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
  int score;
  ArrayList<Fruit> fruits = new ArrayList<Fruit>();
+ 
+ PFont font;
 void setup() {
-  size(640, 480);
-  noStroke();
-  img=loadImage("background.jpg");
-  frameRate(100);
-  score=0;
   //generate();
+  background(255);
+  size(640, 480);   
+  font = createFont("Arial",116,true);
+  textFont(font,50);
+  fill(0);  
+  text("Start",(width/2)-60, height/2);
+  //if(){
+   //startup(); 
+  //}
 }
- 
- void generate(){
-   for (int i = 0; i < (int)random(4)+1; i++) {
-    fruits.add(new Fruit());
+
+boolean started;
+
+void startup(){
+    size(640, 480);
+    noStroke();
+    img=loadImage("background.jpg");
+    frameRate(100);
+    score=0; 
   }
- }
- 
- void Fgenerate(){
-    for (int i = 0; i < (int)random(25)+7; i++) {
-    fruits.add(new Fruit());
-  }
- }
- 
- boolean end;
- boolean freeze,doubled,frenzy;
- int timing,timingd,timingf;
- 
+   
+void generate(){
+     for (int i = 0; i < (int)random(4)+1; i++) {
+      fruits.add(new Fruit());
+    }
+   }
+   
+void Fgenerate(){
+      for (int i = 0; i < (int)random(25)+7; i++) {
+      fruits.add(new Fruit());
+    }
+   }
+   
+boolean end;
+boolean freeze,doubled,frenzy;
+int timing,timingd,timingf;
+   
 void draw() {
-  if(end==false){
-  time=System.currentTimeMillis()/10;
-  if(time%200==0.0){
-    if(frenzy==true){
-      Fgenerate();
-      timingf--;
-      if(timingf==0){
-        frenzy=false; 
+    if(started==true){
+    if(end==false){
+    time=System.currentTimeMillis()/10;
+    if(time%200==0.0){
+      if(frenzy==true){
+        Fgenerate();
+        timingf--;
+        if(timingf==0){
+          frenzy=false; 
+        }
+      }
+      else{
+        generate(); 
+      }
+      
+    }
+  
+    background(img);
+      textSize(40);
+    fill(#FFFFFF);
+    text(""+score, 20, 50);
+    textSize(40);
+    fill(#FFFFFF);
+    if(freeze==false){
+    displayTime=initTime-(((int)millis()/1000)-2);
+     }
+    text(""+displayTime, 560, 50);
+    
+    for (int i=points.size()-1; i>=0; i--) {
+      PVector p = points.get(i);
+      float timeAlive = millis() - p.z;
+      if (timeAlive > fadeOutTime) {
+        points.remove(i);
+      } else {
+        float transparency = map(timeAlive, 0, fadeOutTime, 255, 0);
+        fill(255, transparency);
+        ellipse(p.x, p.y, 7, 7);
       }
     }
-    else{
-      generate(); 
+    for (Fruit f : fruits) {
+      f.display();
+      f.update(fruits);
+           if(f.ended()==true){
+             end=true;
+             clear();
+            img=loadImage("End.png");
+            image(img,0,0,width,height);        
+            text("Score: "+score, width/2, height*3/4);
+          }
+          if(freeze==true){
+            if(f.isfrozen()==false){
+              f.setfreeze(true);
+            }
+            if(millis()-timing>=5000){
+              initTime+=5;
+              freeze=false;
+              f.setfreeze(false);
+            }
+          }
     }
-  }
-
-  background(img);
-    textSize(40);
-  fill(#FFFFFF);
-  text(""+score, 20, 50);
-  textSize(40);
-  fill(#FFFFFF);
-  if(freeze==false){
-  displayTime=initTime-(((int)millis()/1000)-2);
+    if (displayTime<1){
+          end=true;
+          clear();
+            img=loadImage("End.png");
+            image(img,0,0,width,height);   
+            textSize(40);
+            fill(#FFFFFF);
+            text("Score: "+score, width/2, height*3/4);
+      }
+    }
    }
-  text(""+displayTime, 560, 50);
-  
-  for (int i=points.size()-1; i>=0; i--) {
-    PVector p = points.get(i);
-    float timeAlive = millis() - p.z;
-    if (timeAlive > fadeOutTime) {
-      points.remove(i);
-    } else {
-      float transparency = map(timeAlive, 0, fadeOutTime, 255, 0);
-      fill(255, transparency);
-      ellipse(p.x, p.y, 7, 7);
-    }
-  }
-  for (Fruit f : fruits) {
-    f.display();
-    f.update(fruits);
-         if(f.ended()==true){
-           end=true;
-           clear();
-          img=loadImage("End.png");
-          image(img,0,0,width,height);        
-          text("Score: "+score, width/2, height*3/4);
-        }
-        if(freeze==true){
-          if(f.isfrozen()==false){
-            f.setfreeze(true);
-          }
-          if(millis()-timing>=5000){
-            initTime+=5;
-            freeze=false;
-            f.setfreeze(false);
-          }
-        }
-  }
-  if (displayTime<1){
-        end=true;
-        clear();
-          img=loadImage("End.png");
-          image(img,0,0,width,height);   
-          textSize(40);
-          fill(#FFFFFF);
-          text("Score: "+score, width/2, height*3/4);
-    }
-  }
- }
- 
+}
+   
  
  
 void mouseDragged() {
@@ -140,4 +159,8 @@ void mouseDragged() {
       }
     }
   }
-}
+  }
+  
+  
+  void mouseClicked(){
+  }
