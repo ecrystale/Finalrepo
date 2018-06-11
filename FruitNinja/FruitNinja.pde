@@ -130,6 +130,11 @@ void draw() {
       }
     }
    }
+     if(current>=3){
+    combotime=millis();
+    
+     text(current+"X", width/2, 60);
+     }
 }
    
 
@@ -186,12 +191,17 @@ void mouseDragged() {
     
  //System.out.println(combocount);
   }
- System.out.println(combocount);
+    //text(combocount+"X", width/2, height*3/4);
+   System.out.println(combocount);
   }
-  void mouseReleased(){
- combocount=0; 
+  int current;
+  void mouseReleased(){   
+    if(started==true){
+      current=combocount;
+    }
+   combocount=0; 
   }
-  
+  int combotime;
   void mouseClicked(){
     
     if((mouseX<=(width/2)-60+100 && mouseX>=(width/2)-60) && (height/2>=mouseY-50 && height/2<=mouseY+50)){
