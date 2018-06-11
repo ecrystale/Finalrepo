@@ -7,6 +7,7 @@ boolean combo;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
  PImage logo;
+ PImage newGame;
  int score;
  ArrayList<Fruit> fruits = new ArrayList<Fruit>();
  
@@ -14,15 +15,18 @@ ArrayList <PVector> points = new ArrayList <PVector> ();
 void setup() {
   //generate();
   img=loadImage("background.jpg");
-  //logo = loadImage("FruitNinja.png"); 
+  logo = loadImage("FruitNinja.png"); 
+  newGame=loadImage("NewGame.png");
   //image(logo,30,50);
   
   background(img);
   size(640, 480);   
-  font = createFont("Arial",116,true);
-  textFont(font,50);
-  fill(255);  
-  text("Start",(width/2)-60, height/2);
+
+  //font = createFont("Arial",116,true);
+  //textFont(font,50);
+  //fill(255);  
+
+  //text("Start",(width/2)-60, height/2);
   //if(){
   // startup(); 
   // started=true;
@@ -59,6 +63,9 @@ boolean freeze,doubled,frenzy;
 int timing,timingd,timingf,addedtime;
 
 void draw() {
+  image(logo,150,100,width/2,height/2);
+  image(newGame, 30,350, width/5.5,height/4);
+  
     if(started==true){
     if(end==false){
       timed=System.currentTimeMillis()/10;
@@ -205,13 +212,19 @@ void mouseDragged() {
   }
   //int combotime;
   void mouseClicked(){
+ 
+   // if((mouseX>=38 && mouseX>138 && (mouseY<=360 && mouseY>460))){
     
-    if((mouseX<=(width/2)-60+100 && mouseX>=(width/2)-60) && (height/2>=mouseY-50 && height/2<=mouseY+50)){
-     startup();
+     if(mouseX>18&&mouseX<398 && mouseY>250&&mouseY<580){ 
+ // rect(38,360,100,100);
+      
+      startup();
      started=true;
      time=millis();
      addedtime=time;
      time=61000;
      //time=60;
     }
+    
+    
   }
