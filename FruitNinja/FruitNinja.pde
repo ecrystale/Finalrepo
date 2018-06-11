@@ -10,15 +10,17 @@ ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage newGame;
  int score;
  PImage frenzyimg;
- PImage icicles;
+ PImage freezeimg1;
+ PImage doubleimg;
  ArrayList<Fruit> fruits = new ArrayList<Fruit>();
  
  PFont font;
 void setup() {
-  //generate();
+    //generate();
+  doubleimg=loadImage("doublepts.png");
   img=loadImage("background.jpg");
   logo = loadImage("FruitNinja.png");
-  icicles=loadImage("icicles.png");
+  freezeimg1=loadImage("freezeimg1.png");
   newGame=loadImage("NewGame.png");
   frenzyimg=loadImage("Frenzy.png");
   //image(logo,30,50);
@@ -125,7 +127,9 @@ void draw() {
             text("Score: "+score, width/2, height*3/4);
           }
           if(freeze==true){
+          image(freezeimg1,width/2-75,0,width/4.2,height/11);
             if(f.isfrozen()==false){
+            
               f.setfreeze(true);
               
             }
@@ -152,6 +156,12 @@ void draw() {
      if(current>=3){
        // combotime=millis();
        text(current+"X", width/2, 60);
+     }
+     if (frenzy){
+       image(frenzyimg,width/2-100,0);
+     }
+     if (doubled){
+       image(doubleimg,width/2-100,0);
      }
 }
    
