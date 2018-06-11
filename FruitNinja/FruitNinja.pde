@@ -136,21 +136,21 @@ void draw() {
  
 void mouseDragged() {
   points.add(new PVector(mouseX, mouseY, millis()));
+   combocount=0;
   for (Fruit f : fruits) {
     if(f.killed()!=true){
       if(f.killing()){
-        if(!combo){
+        //if(!combo){
           if(f.killed()){
-            for(int i=1;i<fruits.size(); i++){
-              if(fruits.get(i).killed()){
-            combocount++;
-            System.out.println(combocount);
-            combo=true;
-          }
-            }
-          }
-          combo=false;
-        combocount=0;
+            //for(int i=1;i<fruits.size(); i++){
+              //if(fruits.get(i).killed()){
+                combocount++;
+                System.out.println(combocount);
+                //combo=true;
+              //}
+            //}
+          //}
+          //combo=false;
         }
         f.kill();  
         
@@ -165,7 +165,7 @@ void mouseDragged() {
             score++;
             if(doubled==true){
               score++;
-              if(millis()-timingd>=10000){
+              if(millis()-timingd>=5000){
                   doubled=false;
                   f.setdouble(false);
              }
