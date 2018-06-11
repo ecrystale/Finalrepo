@@ -16,7 +16,7 @@ ArrayList <PVector> points = new ArrayList <PVector> ();
  
  PFont font;
 void setup() {
-    //generate();
+  //generate();
   doubleimg=loadImage("doublepts.png");
   img=loadImage("background.jpg");
   logo = loadImage("FruitNinja.png");
@@ -127,9 +127,9 @@ void draw() {
             text("Score: "+score, width/2, height*3/4);
           }
           if(freeze==true){
-          image(freezeimg1,width/2-75,0,width/4.2,height/11);
+           // image(frenzyimg,width/2-100,0);
+            image(freezeimg1,width/2-75,0,width/4.2,height/11);
             if(f.isfrozen()==false){
-            
               f.setfreeze(true);
               
             }
@@ -210,6 +210,7 @@ void mouseDragged() {
          timing= millis();
         }       
         if(f.isfrenzy()){ //&& frenzy==false){
+          
            frenzy=true; 
            f.setfrenzy(false);           
            timingf=2;
