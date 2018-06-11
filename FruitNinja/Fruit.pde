@@ -111,6 +111,7 @@ public class Fruit{
   public void setfreeze(boolean ok){
      frozenBanana=ok;
      if(frozenBanana){
+       
        xspeed= xspeed/4;
        xacc=xacc/4;
       yspeed= yspeed/2;
@@ -122,7 +123,8 @@ public class Fruit{
       if(x==width/2){
            //mid=true; 
            xspeed=0;
-       } 
+       }
+       
      }else
        {
        xspeed= random(1)+.1;

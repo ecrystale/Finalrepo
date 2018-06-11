@@ -9,14 +9,18 @@ ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage logo;
  PImage newGame;
  int score;
+ PImage frenzyimg;
+ PImage icicles;
  ArrayList<Fruit> fruits = new ArrayList<Fruit>();
  
  PFont font;
 void setup() {
   //generate();
   img=loadImage("background.jpg");
-  logo = loadImage("FruitNinja.png"); 
+  logo = loadImage("FruitNinja.png");
+  icicles=loadImage("icicles.png");
   newGame=loadImage("NewGame.png");
+  frenzyimg=loadImage("Frenzy.png");
   //image(logo,30,50);
   
   background(img);
@@ -56,6 +60,7 @@ void Fgenerate(){
         fruits.add(f);
       }
     }
+     
    }
    
 boolean end;
@@ -63,16 +68,20 @@ boolean freeze,doubled,frenzy;
 int timing,timingd,timingf,addedtime;
 
 void draw() {
+  if(!started){
   image(logo,150,100,width/2,height/2);
   image(newGame, 30,350, width/5.5,height/4);
-  
+
+  }
     if(started==true){
     if(end==false){
       timed=System.currentTimeMillis()/10;
        if(timed%200==0.0){
         if(frenzy==true){
+           //image(frenzyimg,width/2-100, 0);
           Fgenerate();
           timingf--;
+          //image(frenzyimg,0, height/2);
         if(timingf==0){
           frenzy=false; 
         }
@@ -118,11 +127,14 @@ void draw() {
           if(freeze==true){
             if(f.isfrozen()==false){
               f.setfreeze(true);
+              
             }
             if(millis()-timing>=5000){
               addedtime+=5000;
               freeze=false;
               f.setfreeze(false);
+              
+              
             }
           }
     }
@@ -215,7 +227,7 @@ void mouseDragged() {
  
    // if((mouseX>=38 && mouseX>138 && (mouseY<=360 && mouseY>460))){
     
-     if(mouseX>18&&mouseX<398 && mouseY>250&&mouseY<580){ 
+     if(mouseX>18&&mouseX<398 && mouseY>250&&mouseY<580 && !started){ 
  // rect(38,360,100,100);
       
       startup();
