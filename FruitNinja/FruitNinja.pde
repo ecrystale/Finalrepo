@@ -131,9 +131,8 @@ void draw() {
     }
    }
      if(current>=3){
-    combotime=millis();
-    
-     text(current+"X", width/2, 60);
+       // combotime=millis();
+       text(current+"X", width/2, 60);
      }
 }
    
@@ -198,10 +197,13 @@ void mouseDragged() {
   void mouseReleased(){   
     if(started==true){
       current=combocount;
+      if(current>=3){     
+       score+=current*2; 
+      }
     }
    combocount=0; 
   }
-  int combotime;
+  //int combotime;
   void mouseClicked(){
     
     if((mouseX<=(width/2)-60+100 && mouseX>=(width/2)-60) && (height/2>=mouseY-50 && height/2<=mouseY+50)){
