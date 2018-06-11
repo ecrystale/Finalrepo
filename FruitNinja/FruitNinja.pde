@@ -3,7 +3,7 @@ long displayTime,timed;
 float fadeOutTime = 1000;
 int initTime=60;
 boolean combo;
-int combocount;
+//int combocount;
 ArrayList <PVector> points = new ArrayList <PVector> ();
  PImage img;
  PImage logo;
@@ -21,7 +21,7 @@ void setup() {
   size(640, 480);   
   font = createFont("Arial",116,true);
   textFont(font,50);
-  fill(0);  
+  fill(255);  
   text("Start",(width/2)-60, height/2);
   //if(){
   // startup(); 
@@ -115,7 +115,7 @@ void draw() {
             if(millis()-timing>=5000){
               addedtime+=5000;
               freeze=false;
-              //f.setfreeze(false);
+              f.setfreeze(false);
             }
           }
     }
@@ -134,23 +134,23 @@ void draw() {
    
 
  
+     int combocount=0;
 void mouseDragged() {
   points.add(new PVector(mouseX, mouseY, millis()));
-   combocount=0;
   for (Fruit f : fruits) {
     if(f.killed()!=true){
       if(f.killing()){
-        //if(!combo){
+        if(!combo){
           if(f.killed()){
             //for(int i=1;i<fruits.size(); i++){
               //if(fruits.get(i).killed()){
                 combocount++;
-                System.out.println(combocount);
-                //combo=true;
+                combo=true;
               //}
             //}
-          //}
-          //combo=false;
+          }
+          combo=false;
+           System.out.println(combocount);
         }
         f.kill();  
         
@@ -181,11 +181,16 @@ void mouseDragged() {
            f.setfrenzy(false);           
            timingf=2;
         }
-      }
+     }
     }
+    
+ //System.out.println(combocount);
   }
+ System.out.println(combocount);
   }
-  
+  void mouseReleased(){
+ combocount=0; 
+  }
   
   void mouseClicked(){
     
